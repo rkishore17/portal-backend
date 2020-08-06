@@ -11,6 +11,7 @@ public abstract class Constants {
 	public static final String FETCH_PROPRIETOR_BY_ID = "/proprietor/{id}";
 	public static final String FETCH_PROPRIETOR_BY_NAME_OR_PHONE_NO = "/proprietor/search/{search-value}";
 	public static final String DELETE_PROPRIETOR = "/delete-proprietor/{ids}";
+	public static final String UPDATE_PROPRIETOR_NAME = "/update-name";
 	
 	//UNIT_API_NAMES
 	public static final String SAVE_AND_UPDATE_UNIT = "/save-unit";

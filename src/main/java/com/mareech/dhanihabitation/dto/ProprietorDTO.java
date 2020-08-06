@@ -1,6 +1,9 @@
 package com.mareech.dhanihabitation.dto;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.mareech.dhanihabitation.model.Unit;
 
 public class ProprietorDTO{
 	
@@ -17,6 +20,7 @@ public class ProprietorDTO{
 	private Double lattitude;
 	private String pincode;
 	private Date createdDate;
+	private List<Unit> units;
 	
 	public Long getId() {
 		return id;
@@ -120,5 +124,13 @@ public class ProprietorDTO{
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public List<Unit> getUnits() {
+		return units;
+	}
+
+	public void setUnits(List<Unit> units) {
+		this.units = units;
 	}	
 }

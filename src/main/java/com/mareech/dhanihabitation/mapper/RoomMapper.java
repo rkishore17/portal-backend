@@ -3,6 +3,7 @@ package com.mareech.dhanihabitation.mapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,10 +84,10 @@ public class RoomMapper implements AbstractMapper<RoomDTO, Room>{
 		
 		if(dto.getAmenities() != null)
 		{
-			List<String> aminityNames = new ArrayList<>();
-			dto.getAmenities().forEach(el -> aminityNames.add(el.getName()));
+			List<Long> aminityIds = new ArrayList<>();
+			dto.getAmenities().forEach(el -> aminityIds.add(el.getId()));
 			
-			List<Amenities> aminities = amenityRepository.findByNameIn(aminityNames);
+			List<Amenities> aminities = amenityRepository.findByIdIn(aminityIds);
 			room.setAmenities(aminities);
 		}
 		
@@ -95,7 +96,8 @@ public class RoomMapper implements AbstractMapper<RoomDTO, Room>{
 
 	@Override
 	public List<RoomDTO> modelToDTOList(List<Room> modelList) {
-		return null;
+		return modelList.stream().map(room -> modelMapper.map(room, RoomDTO.class))
+				.collect(Collectors.toList());
 	}
 
 	@Override

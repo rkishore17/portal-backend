@@ -27,6 +27,7 @@ public class ProprietorMapper implements AbstractMapper<ProprietorDTO, Proprieto
 		ProprietorDTO dtoObject = modelMapper.map(model, ProprietorDTO.class);
 		dtoObject.setProprietorTypeId(model.getProprietorType() != null ? model.getProprietorType().getId() : null);
 		dtoObject.setProprietorType(model.getProprietorType() != null ? model.getProprietorType().getName() : null);
+		dtoObject.setUnits(model.getUnits() != null ? model.getUnits() : null);
 		return dtoObject;
 	}
 
@@ -59,6 +60,7 @@ public class ProprietorMapper implements AbstractMapper<ProprietorDTO, Proprieto
 			proprietorDTO.setLongitude(el.getLongitude());
 			proprietorDTO.setLattitude(el.getLattitude());
 			proprietorDTO.setPincode(el.getPincode());
+			proprietorDTO.setUnits(el.getUnits());
 
 			proprietorDTOList.add(proprietorDTO);
 		});

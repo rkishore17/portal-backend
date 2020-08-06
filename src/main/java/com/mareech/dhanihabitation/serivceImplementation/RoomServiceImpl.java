@@ -1,10 +1,12 @@
 package com.mareech.dhanihabitation.serivceImplementation;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mareech.dhanihabitation.dto.FilterDTO;
 import com.mareech.dhanihabitation.dto.RoomDTO;
 import com.mareech.dhanihabitation.mapper.RoomMapper;
 import com.mareech.dhanihabitation.model.Room;
@@ -45,4 +47,15 @@ public class RoomServiceImpl implements RoomService{
 			 throw new RuntimeException();
 		}
 	}
+
+	
+	@Override
+	public List<RoomDTO> findByFilterCriteria(FilterDTO filterDTO) {
+		try {			
+			List<Room> room = roomRepository.getFilterCriteria(filterDTO.getUnits(), filterDTO.getSharingType());
+			return roomMapper.modelToDTOList(room);
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
+	}	
 }

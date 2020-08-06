@@ -10,4 +10,5 @@ public interface ProprietorService {
 	public ProprietorDTO saveAndUpdateProprietor(ProprietorDTO proprietorDTO);
 	public ProprietorDTO getProprietorById(Long id);
 	public List<ProprietorDTO> getProprietorByNameOrPhone(String name, PagingAndSortingDTO pagingAndSortingDTO);
+	public int updateProprietorName(Long id, String name);
 }

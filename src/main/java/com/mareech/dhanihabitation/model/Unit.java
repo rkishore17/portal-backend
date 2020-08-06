@@ -3,21 +3,25 @@ package com.mareech.dhanihabitation.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 
 @Table(name = "unit")
 public class Unit extends Common {
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonBackReference
 	@JoinColumn(name = "proprietor_id", foreignKey = @ForeignKey(name = "FK_PROPRIETOR"), referencedColumnName = "id")
 	private Proprietor proprietor;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "unit_type_id", foreignKey = @ForeignKey(name = "FK_UNIT_TYPE"), referencedColumnName = "id")
 	private UnitType unitType;
 	

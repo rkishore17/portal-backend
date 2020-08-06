@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 
-@Table(name = "blood_type")
+@Table(name = "blood_group")
 public class BloodGroup extends Common{
 
 	@Column(name = "name", length = 25, nullable = false)
