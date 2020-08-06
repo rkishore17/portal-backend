@@ -51,4 +51,11 @@ public class ProprietorController {
 		List<ProprietorDTO> proprietorResponseList = proprietorService.getProprietorByNameOrPhone(searchValue, pagingAndSortingDTO);
 		return new ResponseEntity<>(proprietorResponseList, HttpStatus.OK);
 	}
+	
+	@PostMapping(value = Constants.UPDATE_PROPRIETOR_NAME)
+	public ResponseEntity<Integer> updateProprietorName(@RequestBody ProprietorDTO proprietorDTO)
+	{
+		int updateResponse = proprietorService.updateProprietorName(proprietorDTO.getId(), proprietorDTO.getName());
+		return new ResponseEntity<>(updateResponse, HttpStatus.OK);
+	}	
 }

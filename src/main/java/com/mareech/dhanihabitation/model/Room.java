@@ -9,8 +9,7 @@ import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-//import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,17 +23,16 @@ public class Room extends Common {
 	@Column(name = "description", length = 256, nullable = true)
 	private String description;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@Column(name = "availableSlots", length = 16, nullable = false)
+	private Integer availableSlots;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "unit_id", foreignKey = @ForeignKey(name = "FK_UNIT"), referencedColumnName = "id")
 	private Unit unit;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "sharing_id", foreignKey = @ForeignKey(name = "FK_SHARING"), referencedColumnName = "id")
 	private SharingType sharingType;
-	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "amenities_id", foreignKey = @ForeignKey(name = "FK_AMENITIES"), referencedColumnName = "id")
-//	private Amenities amenities;
 	
 	@ManyToMany
     @JoinTable(name="room_amenities_map",
@@ -42,7 +40,7 @@ public class Room extends Common {
     inverseJoinColumns = @JoinColumn(name = "amenity_id", foreignKey = @ForeignKey(name = "FK_AMENITY_ROOM")))
     private List<Amenities> amenities;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "available_status_id", foreignKey = @ForeignKey(name = "FK_AVIL_STATUS"), referencedColumnName = "id")
 	private AvailableStatus availableStatus;
 
@@ -92,5 +90,13 @@ public class Room extends Common {
 
 	public void setAvailableStatus(AvailableStatus availableStatus) {
 		this.availableStatus = availableStatus;
-	}	
+	}
+
+	public Integer getAvailableSlots() {
+		return availableSlots;
+	}
+
+	public void setAvailableSlots(Integer availableSlots) {
+		this.availableSlots = availableSlots;
+	}
 }

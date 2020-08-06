@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,11 +15,11 @@ import javax.persistence.Table;
 @Table(name = "consumer")
 public class Consumer extends Common {
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "room_id", foreignKey = @ForeignKey(name = "FK_ROOM"), referencedColumnName = "id")
 	private Room room;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "blood_group_id", foreignKey = @ForeignKey(name = "FK_BLOOD_TYPE"), referencedColumnName = "id")
 	private BloodGroup bloodGroup;
 	

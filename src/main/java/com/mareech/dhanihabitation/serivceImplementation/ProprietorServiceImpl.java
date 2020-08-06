@@ -75,4 +75,14 @@ public class ProprietorServiceImpl implements ProprietorService {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
+
+	@Override
+	public int updateProprietorName(Long id, String name) 
+	{
+		try {
+			return proprietorRepository.updateProprietorName(id, name);
+		} catch (Exception e) {
+			 throw new RuntimeException(e.getMessage());
+		}
+	}
 }

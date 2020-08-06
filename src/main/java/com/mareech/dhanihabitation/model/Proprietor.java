@@ -1,14 +1,19 @@
 package com.mareech.dhanihabitation.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 
@@ -42,9 +47,13 @@ public class Proprietor extends Common {
 	@Column(name = "pincode", length = 16, nullable = false)
 	private String pincode;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "proprietor_type_id", foreignKey = @ForeignKey(name = "FK_PROP_TYPE"), referencedColumnName = "id")
 	private ProprietorType proprietorType;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "proprietor", fetch = FetchType.LAZY)
+	@JsonManagedReference
+	private List<Unit> units;
 
 	public String getName() {
 		return name;
@@ -124,5 +133,13 @@ public class Proprietor extends Common {
 
 	public void setProprietorType(ProprietorType proprietorType) {
 		this.proprietorType = proprietorType;
+	}
+
+	public List<Unit> getUnits() {
+		return units;
+	}
+
+	public void setUnits(List<Unit> units) {
+		this.units = units;
 	}
 }

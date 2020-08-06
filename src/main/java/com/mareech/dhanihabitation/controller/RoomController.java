@@ -1,5 +1,7 @@
 package com.mareech.dhanihabitation.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mareech.dhanihabitation.Constants;
+import com.mareech.dhanihabitation.dto.FilterDTO;
 import com.mareech.dhanihabitation.dto.RoomDTO;
 import com.mareech.dhanihabitation.service.RoomService;
 
@@ -32,6 +35,13 @@ public class RoomController {
 	public ResponseEntity<RoomDTO> getRoomById(@PathVariable("id") Long id)
 	{
 		RoomDTO roomResponse = roomService.getRoomById(id);		
+		return new ResponseEntity<>(roomResponse, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = Constants.FETCH_ROOM_BY_PROPRIETOR_ID)
+	public ResponseEntity<List<RoomDTO>> getFilterCri(@PathVariable("filterDTO") FilterDTO filterDTO)
+	{
+		List<RoomDTO> roomResponse = roomService.findByFilterCriteria(filterDTO);
 		return new ResponseEntity<>(roomResponse, HttpStatus.OK);
 	}
 }

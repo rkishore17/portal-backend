@@ -13,6 +13,7 @@ public class RoomDTO {
 	private Long sharingTypeId;
 	private String sharingTypeName;
 	private String description;
+	private Integer availableSlots;
 	private Long availableStatusId;
 	private String availableStatusName;
 	private	List<AmenitiesDTO> amenities;
@@ -111,5 +112,13 @@ public class RoomDTO {
 
 	public void setAmenities(List<AmenitiesDTO> amenities) {
 		this.amenities = amenities;
+	}
+
+	public Integer getAvailableSlots() {
+		return availableSlots;
+	}
+
+	public void setAvailableSlots(Integer availableSlots) {
+		this.availableSlots = availableSlots;
 	}
 }
