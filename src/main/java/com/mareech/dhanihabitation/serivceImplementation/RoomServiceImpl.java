@@ -51,8 +51,8 @@ public class RoomServiceImpl implements RoomService{
 	
 	@Override
 	public List<RoomDTO> findByFilterCriteria(FilterDTO filterDTO) {
-		try {
-			List<Room> room = roomRepository.getFilterCriteria(filterDTO.getUnits());
+		try {			
+			List<Room> room = roomRepository.getFilterCriteria(filterDTO.getUnits(), filterDTO.getSharingType());
 			return roomMapper.modelToDTOList(room);
 		} catch (Exception e) {
 			throw new RuntimeException();

@@ -15,8 +15,9 @@ public interface RoomRepository extends JpaRepository<Room, Long>{
 	public Page<Room> findAll(Pageable pageable);
 	
 	@Query("SELECT room FROM Room room "
-			+ " INNER JOIN Unit unit ON unit.id = room.unitId"
-			+ " INNER JOIN Proprietor proprietor ON proprietor.id = unit.proprietorId"
-			+ " WHERE proprietor.id = 1 and unit.id in (1,2)")
-	public List<Room> getFilterCriteria(@Param("unitId") List<Long> unitId);
+			+ " INNER JOIN room.unit u"
+			+ " INNER JOIN u.proprietor p"
+			+ " WHERE p.id = 1 and (COALESCE(:unitId, null) is null or u.id in :unitId) "
+			+ " and (COALESCE(:sharingId, null) is null or room.sharingType.id in :sharingId)")
+	public List<Room> getFilterCriteria(@Param("unitId") List<Long> unitId, @Param("sharingId") List<Long> sharingId);
 }

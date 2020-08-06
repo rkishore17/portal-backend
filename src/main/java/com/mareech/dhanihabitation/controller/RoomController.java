@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mareech.dhanihabitation.Constants;
 import com.mareech.dhanihabitation.dto.FilterDTO;
 import com.mareech.dhanihabitation.dto.RoomDTO;
@@ -38,8 +40,8 @@ public class RoomController {
 		return new ResponseEntity<>(roomResponse, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = Constants.FETCH_ROOM_BY_PROPRIETOR_ID)
-	public ResponseEntity<List<RoomDTO>> getFilterCri(@PathVariable("filterDTO") FilterDTO filterDTO)
+	@GetMapping(value = Constants.FETCH_ROOM_BY_FILTER_CRITERIA)
+	public ResponseEntity<List<RoomDTO>> getFilterCriteria(FilterDTO filterDTO) throws JsonMappingException, JsonProcessingException
 	{
 		List<RoomDTO> roomResponse = roomService.findByFilterCriteria(filterDTO);
 		return new ResponseEntity<>(roomResponse, HttpStatus.OK);
