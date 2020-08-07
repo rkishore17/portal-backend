@@ -102,6 +102,7 @@ public class RoomMapper implements AbstractMapper<RoomDTO, Room>{
 
 	@Override
 	public List<Room> dtoToModelList(List<RoomDTO> dtoList) {
-		return null;
+		return dtoList.stream().map(room -> modelMapper.map(room, Room.class))
+				.collect(Collectors.toList());
 	}
 }

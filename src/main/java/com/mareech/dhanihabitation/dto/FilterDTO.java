@@ -4,7 +4,7 @@ import java.util.List;
 
 public class FilterDTO {
 
-//	private List<Long> amenities;
+	private List<Long> amenities;
 	private List<Long> sharingType;
 	private List<Long> units;
 //	private List<Long> rooms;
@@ -20,14 +20,14 @@ public class FilterDTO {
 		this.units = units;
 	}
 	
-//	public List<Long> getAmenities() {
-//		return amenities;
-//	}
-//
-//	public void setAmenities(List<Long> amenities) {
-//		this.amenities = amenities;
-//	}
-//	
+	public List<Long> getAmenities() {
+		return amenities;
+	}
+
+	public void setAmenities(List<Long> amenities) {
+		this.amenities = amenities;
+	}
+	
 	public List<Long> getSharingType() {
 		return sharingType;
 	}
