@@ -2,6 +2,8 @@ package com.mareech.dhanihabitation.controller;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +19,15 @@ import com.mareech.dhanihabitation.dto.PagingAndSortingDTO;
 import com.mareech.dhanihabitation.dto.ProprietorDTO;
 import com.mareech.dhanihabitation.service.ProprietorService;
 
+
 @RestController
 @RequestMapping(value = Constants.API_END_POINT)
 public class ProprietorController {
 	
 	@Autowired
 	ProprietorService proprietorService;
+	
+	private static final Logger logger = LogManager.getLogger(ProprietorController.class);
 	
 	@PostMapping(value = Constants.FETCH_PROPRIETORS)
 	public ResponseEntity<List<ProprietorDTO>> getAllProprietors(@RequestBody PagingAndSortingDTO pagingAndSortingDTO) 
@@ -41,6 +46,7 @@ public class ProprietorController {
 	@GetMapping(value = Constants.FETCH_PROPRIETOR_BY_ID)
 	public ResponseEntity<ProprietorDTO> getProprietorById(@PathVariable("id") Long id)
 	{
+		logger.info("ProprietorId: " + id);
 		ProprietorDTO proprietorResponse = proprietorService.getProprietorById(id);
 		return new ResponseEntity<>(proprietorResponse, HttpStatus.OK);
 	}
