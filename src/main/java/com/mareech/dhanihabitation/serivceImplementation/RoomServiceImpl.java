@@ -10,6 +10,7 @@ import com.mareech.dhanihabitation.dto.FilterDTO;
 import com.mareech.dhanihabitation.dto.RoomDTO;
 import com.mareech.dhanihabitation.mapper.RoomMapper;
 import com.mareech.dhanihabitation.model.Room;
+import com.mareech.dhanihabitation.repository.AmenitiesRepository;
 import com.mareech.dhanihabitation.repository.RoomRepository;
 import com.mareech.dhanihabitation.service.RoomService;
 
@@ -21,6 +22,9 @@ public class RoomServiceImpl implements RoomService{
 	
 	@Autowired
 	RoomMapper roomMapper;
+	
+	@Autowired
+	AmenitiesRepository amenityRepository;
 
 	@Override
 	public RoomDTO saveAndUpdateRoom(RoomDTO roomDTO) 
@@ -51,8 +55,8 @@ public class RoomServiceImpl implements RoomService{
 	
 	@Override
 	public List<RoomDTO> findByFilterCriteria(FilterDTO filterDTO) {
-		try {			
-			List<Room> room = roomRepository.getFilterCriteria(filterDTO.getUnits(), filterDTO.getSharingType());
+		try {
+			List<Room> room = roomRepository.getFilterCriteria(filterDTO.getUnits(), filterDTO.getSharingType(), filterDTO.getAmenities());
 			return roomMapper.modelToDTOList(room);
 		} catch (Exception e) {
 			throw new RuntimeException();

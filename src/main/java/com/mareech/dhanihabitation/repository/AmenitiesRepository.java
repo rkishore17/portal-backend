@@ -8,5 +8,5 @@ import com.mareech.dhanihabitation.model.Amenities;
 
 public interface AmenitiesRepository extends JpaRepository<Amenities, Long>{
 
-	public List<Amenities> findByIdIn(List<Long> amenityNames);
+	public List<Amenities> findByIdIn(List<Long> amenityIds);
 }
