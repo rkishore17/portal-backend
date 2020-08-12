@@ -14,7 +14,7 @@ public class Utils {
 	{	
 		if(pagingAndSortingDTO != null)
 		{
-			Integer pageNo = pagingAndSortingDTO.getPageNo() != null ? pagingAndSortingDTO.getPageNo() - 1 : 0;
+			Integer pageNo = pagingAndSortingDTO.getPageNo() != null ? pagingAndSortingDTO.getPageNo() - 1 : 1;
 			Integer recordsPerPage = pagingAndSortingDTO.getRecordsPerPage() != null ? pagingAndSortingDTO.getRecordsPerPage() : 5;
 			String sortColumn = pagingAndSortingDTO.getSortColumn() != null ? pagingAndSortingDTO.getSortColumn() : "id";
 			String sortDirection = pagingAndSortingDTO.getSortDirection() != null && pagingAndSortingDTO.getSortDirection().equals(Constants.DESCENDING) ? Constants.DESCENDING : Constants.ASCENDING;
