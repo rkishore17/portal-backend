@@ -19,7 +19,6 @@ import com.mareech.dhanihabitation.dto.PagingAndSortingDTO;
 import com.mareech.dhanihabitation.dto.ProprietorDTO;
 import com.mareech.dhanihabitation.service.ProprietorService;
 
-
 @RestController
 @RequestMapping(value = Constants.API_END_POINT)
 public class ProprietorController {
@@ -46,8 +45,9 @@ public class ProprietorController {
 	@GetMapping(value = Constants.FETCH_PROPRIETOR_BY_ID)
 	public ResponseEntity<ProprietorDTO> getProprietorById(@PathVariable("id") Long id)
 	{
-		logger.info("ProprietorId: " + id);
+		logger.info("REQUEST: GET: API: FETCH_PROPRIETOR_BY_ID: " + "STARTED");
 		ProprietorDTO proprietorResponse = proprietorService.getProprietorById(id);
+		logger.info("RESPONSE: GET: API: FETCH_PROPRIETOR_BY_ID: " + "RESP_RECEIVED:END:" + proprietorResponse.getId());
 		return new ResponseEntity<>(proprietorResponse, HttpStatus.OK);
 	}
 	
