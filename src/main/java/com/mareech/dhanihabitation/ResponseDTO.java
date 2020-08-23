@@ -33,10 +33,8 @@ public class ResponseDTO {
 	}
 
 	public ResponseDTO(HttpStatus status, String message, Object data) {
-		super();
 		this.status = status;
 		this.message = message;
 		this.data = data;
 	}
-	
 }
